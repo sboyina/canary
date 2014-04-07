@@ -1,0 +1,48 @@
+<project name="pecker" basedir="." default="release">
+	<property name="SRC_DIR" value="src" />
+	<property name="TARGET_DIR" value="target" />
+	<property name="LIB_DIR" value="lib" />
+	<property name="VERSION" value="1.0.0" />
+	<path id="lib.path">
+		<fileset dir="${LIB_DIR}">
+			<filename name="*.jar" />
+		</fileset>
+	</path>
+	<target name="setup">
+		<mkdir dir="${TARGET_DIR}" />
+		<mkdir dir="${TARGET_DIR}/classes" />
+		<mkdir dir="${TARGET_DIR}/dist" />
+	</target>
+	<target name="clean">
+		<delete dir="${TARGET_DIR}" />
+	</target>
+	<target name="compile" depends="clean, setup">
+		<javac srcdir="${SRC_DIR}" classpathref="lib.path" destdir="${TARGET_DIR}/classes">
+		</javac>
+	</target>
+	<target name="jar" depends="compile">
+		<jar destfile="${TARGET_DIR}/dist/${ant.project.name}-${VERSION}.jar">
+			<fileset dir="${TARGET_DIR}/classes">
+				<filename name="**/*.class" />
+			</fileset>
+			<fileset dir="${SRC_DIR}">
+				<filename name="**/*.png" />
+			</fileset>
+			<manifest>
+				<attribute name="Manifest-Version" value="1.0" />
+				<attribute name="Main-Class" value="com.strategicbase.pecker.AppStarter" />
+				<attribute name="Class-Path" value="AbsoluteLayout.jar jaudiotagger-2.2.0-20130321.142353-1.jar swing-layout-1.0.3.jar ${ant.project.name}-${VERSION}.jar" />
+			</manifest>
+		</jar>
+	</target>
+	<target name="release" depends="jar">
+		<copy todir="${TARGET_DIR}/dist/${ant.project.name}-${VERSION}">
+			<fileset dir="${TARGET_DIR}/dist">
+				<filename name="*.jar" />
+			</fileset>
+			<fileset dir="${LIB_DIR}">
+				<filename name="*.jar" />
+			</fileset>
+		</copy>
+	</target>
+</project>
