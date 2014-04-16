@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.strategicbase.pecker;
+package com.strategicbase.canary;
 
 /**
  * @author srinivasab

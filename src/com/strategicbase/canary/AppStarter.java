@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.strategicbase.pecker;
+package com.strategicbase.canary;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -13,8 +13,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.UIManager;
 
-import com.strategicbase.pecker.ui.PeckerFrame;
-import com.strategicbase.pecker.util.TextAreaLogAppender;
+import com.strategicbase.canary.ui.CanaryFrame;
+import com.strategicbase.canary.util.TextAreaLogAppender;
 
 /**
  * @author srinivasab
@@ -53,17 +53,17 @@ public class AppStarter {
 		}
 		java.awt.EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				PeckerFrame peckerFrame = new PeckerFrame();
-				centreWindow(peckerFrame);
-				peckerFrame.setVisible(true);
+				CanaryFrame canaryFrame = new CanaryFrame();
+				centreWindow(canaryFrame);
+				canaryFrame.setVisible(true);
 				ImageIcon imgIcon = new ImageIcon(
 						Toolkit.getDefaultToolkit()
 								.getImage(
 										getClass()
 												.getResource(
-														"/com/strategicbase/pecker/ui/images/pecker.png")));
-				peckerFrame.setIconImage(imgIcon.getImage());
-				TEXT_AREA_LOG_APPENDER.setTextArea(peckerFrame.getConsolePane());
+														"/com/strategicbase/canary/ui/images/canary.png")));
+				canaryFrame.setIconImage(imgIcon.getImage());
+				TEXT_AREA_LOG_APPENDER.setTextArea(canaryFrame.getConsolePane());
 			}
 		});
 	}

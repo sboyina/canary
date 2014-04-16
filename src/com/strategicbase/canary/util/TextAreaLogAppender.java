@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.strategicbase.pecker.util;
+package com.strategicbase.canary.util;
 
 import java.util.logging.Handler;
 import java.util.logging.LogRecord;

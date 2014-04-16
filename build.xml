@@ -1,4 +1,4 @@
-<project name="pecker" basedir="." default="release">
+<project name="canary" basedir="." default="release">
 	<property name="SRC_DIR" value="src" />
 	<property name="TARGET_DIR" value="target" />
 	<property name="LIB_DIR" value="lib" />
@@ -30,7 +30,7 @@
 			</fileset>
 			<manifest>
 				<attribute name="Manifest-Version" value="1.0" />
-				<attribute name="Main-Class" value="com.strategicbase.pecker.AppStarter" />
+				<attribute name="Main-Class" value="com.strategicbase.canary.AppStarter" />
 				<attribute name="Class-Path" value="AbsoluteLayout.jar jaudiotagger-2.2.0-20130321.142353-1.jar swing-layout-1.0.3.jar ${ant.project.name}-${VERSION}.jar" />
 			</manifest>
 		</jar>

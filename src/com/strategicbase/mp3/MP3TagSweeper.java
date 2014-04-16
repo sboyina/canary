@@ -19,7 +19,7 @@ import org.jaudiotagger.tag.Tag;
 import org.jaudiotagger.tag.TagField;
 import org.jaudiotagger.tag.id3.ID3v24Tag;
 
-import com.strategicbase.pecker.ProgressListener;
+import com.strategicbase.canary.ProgressListener;
 
 /**
  * @author srinivasab

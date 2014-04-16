@@ -1,10 +1,10 @@
 /*
- * PeckerFrame.java
+ * CanaryFrame.java
  *
  * Created on __DATE__, __TIME__
  */
 
-package com.strategicbase.pecker.ui;
+package com.strategicbase.canary.ui;
 
 import java.io.File;
 import java.util.logging.Level;
@@ -13,16 +13,16 @@ import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.SwingWorker;
 
+import com.strategicbase.canary.ProgressListener;
 import com.strategicbase.mp3.MP3TagSweeper;
-import com.strategicbase.pecker.ProgressListener;
 
 /**
  * 
  * @author __USER__
  */
-public class PeckerFrame extends javax.swing.JFrame {
+public class CanaryFrame extends javax.swing.JFrame {
 
-	private static final Logger LOGGER = Logger.getLogger(PeckerFrame.class
+	private static final Logger LOGGER = Logger.getLogger(CanaryFrame.class
 			.getName());
 
 	/**
@@ -31,13 +31,13 @@ public class PeckerFrame extends javax.swing.JFrame {
 	private static final long serialVersionUID = 1L;
 	JFileChooser fileChooser = new JFileChooser();
 
-	/** Creates new form PeckerFrame */
-	public PeckerFrame() {
+	/** Creates new form CanaryFrame */
+	public CanaryFrame() {
 		initComponents();
 		fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 	}
 
-	// GEN-BEGIN:initComponents
+	//GEN-BEGIN:initComponents
 	// <editor-fold defaultstate="collapsed" desc="Generated Code">
 	private void initComponents() {
 
@@ -52,7 +52,7 @@ public class PeckerFrame extends javax.swing.JFrame {
 		stopBtn = new javax.swing.JButton();
 
 		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-		setTitle("Pecker");
+		setTitle("canary");
 		setAlwaysOnTop(true);
 		setBackground(new java.awt.Color(204, 204, 204));
 		setResizable(false);
@@ -74,6 +74,9 @@ public class PeckerFrame extends javax.swing.JFrame {
 				startBtnActionPerformed(evt);
 			}
 		});
+
+		consolePane
+				.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
 		console.setBackground(new java.awt.Color(51, 51, 51));
 		console.setColumns(20);
@@ -229,7 +232,7 @@ public class PeckerFrame extends javax.swing.JFrame {
 
 		pack();
 	}// </editor-fold>
-		// GEN-END:initComponents
+	//GEN-END:initComponents
 
 	private void stopBtnActionPerformed(java.awt.event.ActionEvent evt) {
 		if (this.task != null) {
@@ -256,7 +259,7 @@ public class PeckerFrame extends javax.swing.JFrame {
 		} else {
 			this.console.setText("");
 			this.progressBar.setValue(0);
-			this.task = new PeckerTask(file);
+			this.task = new CanaryTask(file);
 			this.task.execute();
 			this.startBtn.setEnabled(false);
 			this.stopBtn.setEnabled(true);
@@ -276,7 +279,7 @@ public class PeckerFrame extends javax.swing.JFrame {
 		return console;
 	}
 
-	// GEN-BEGIN:variables
+	//GEN-BEGIN:variables
 	// Variables declaration - do not modify
 	private javax.swing.JButton browseBtn;
 	private javax.swing.JTextArea console;
@@ -289,21 +292,21 @@ public class PeckerFrame extends javax.swing.JFrame {
 	private javax.swing.JButton stopBtn;
 	// End of variables declaration//GEN-END:variables
 
-	private PeckerTask task;
+	private CanaryTask task;
 
-	private class PeckerTask extends SwingWorker<Void, Void> {
+	private class CanaryTask extends SwingWorker<Void, Void> {
 
 		private File rootDir = null;
 
-		PeckerTask(File rootDir) {
+		CanaryTask(File rootDir) {
 			this.rootDir = rootDir;
 		}
 
 		@Override
 		protected Void doInBackground() throws Exception {
-			MP3TagSweeper pecker = new MP3TagSweeper();
+			MP3TagSweeper canary = new MP3TagSweeper();
 			boolean includeSubFolders = processSubfolderFlag.isSelected();
-			pecker.updateAlbumTitle(rootDir.getAbsolutePath(),
+			canary.updateAlbumTitle(rootDir.getAbsolutePath(),
 					includeSubFolders, new ProgressListener() {
 						@Override
 						public void setProgress(int progressPercentage) {
