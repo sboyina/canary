@@ -12,8 +12,9 @@
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" href="stylesheets/bootstrap.min.css">
 	<link rel="stylesheet" href="stylesheets/skin.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
+	<script src="javascripts/script.js"></script>
     <!--[if lt IE 9]>
       <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
@@ -49,8 +50,8 @@
 	</div>
 	<div class="container" id="downloads">
 		<h4>Downloads</h4>
-		<a class="btn btn-danger" href="https://github.com/sboyina/pecker/releases/download/V1.0.1-beta/pecker-1.0.0.exe"><span class="glyphicon glyphicon-cloud-download"> Pecker-1.0.0.exe</span></a>
-		<a class="btn btn-danger" href="https://github.com/sboyina/pecker/releases/download/V1.0.1-beta/pecker-1.0.0.zip"><span class="glyphicon glyphicon-cloud-download"> Pecker-1.0.0.zip</span></a>
+		<a class="btn btn-danger btn-download" href="https://github.com/sboyina/pecker/releases/download/V1.0.1-beta/pecker-1.0.0.exe"><span class="glyphicon glyphicon-cloud-download"> Pecker-1.0.0.exe</span></a>
+		<a class="btn btn-danger btn-download" href="https://github.com/sboyina/pecker/releases/download/V1.0.1-beta/pecker-1.0.0.zip"><span class="glyphicon glyphicon-cloud-download"> Pecker-1.0.0.zip</span></a>
 	</div>
 	<div class="container">
 		<h4>Software Requirements.</h4>
@@ -61,7 +62,7 @@
 		<ul>			
 			<li>Download exe file and run it.</li>			
 		</ul>
-		<h4>How to run the program on other operating systems <i>(this works on windows as well).</i></h4>
+		<h4>How to run the program on other operating systems.</h4>
 		<ul>			
 			<li>Download the zip file</li>			
 			<li>Extract the contents of the zip file to a folder</li>
@@ -88,6 +89,40 @@
 	</div>
 	<div class="page-footer">
 		The MIT License (MIT) Copyright (c) 2014 sboyina
+	</div>
+	<div id="license_terms" class="modal fade in">		
+		<div class="modal-dialog">
+		  <div class="modal-content">
+			<div class="modal-header">
+			  <h4 class="modal-title" id="myModalLabel">License terms</h4>
+			</div>
+			<div class="modal-body">
+				<b>The MIT License (MIT)</b><br>
+				<br>Copyright (c) 2014 sboyina<br><br>
+				<p>Permission is hereby granted, free of charge, to any person obtaining a copy
+				of this software and associated documentation files (the "Software"), to deal
+				in the Software without restriction, including without limitation the rights
+				to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+				copies of the Software, and to permit persons to whom the Software is
+				furnished to do so, subject to the following conditions:</p>
+
+				<p>The above copyright notice and this permission notice shall be included in all
+				copies or substantial portions of the Software.</p>
+
+				<p>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+				IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+				FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+				AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+				LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+				OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+				SOFTWARE.</p>
+			</div>
+			<div class="modal-footer">
+			  <button type="button" class="btn btn-primary">Accept</button>
+			  <button type="button" class="btn btn-default">Don't Accept</button>
+			</div>
+		  </div>
+		</div>
 	</div>
   </body>
 </html>
