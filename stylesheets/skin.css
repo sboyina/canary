@@ -2,6 +2,21 @@ body{
 	padding-top:100px;
 	background-color: #CDE7E4;
 }
+.screen-shot{
+	padding:10px;
+}
+.page-footer{
+	position:fixed;
+	bottom: 0px;
+	width: 100%;
+	text-align: center;
+	font-size: 11px;
+	background-color: #9CC0B6;
+	padding: 5px;
+	color: #000;
+	font-weight: bold;
+	color: #4A4A44;
+}
 .nav>li>a.btn-github{
 	color: #FFF;
 	font-size: 12px;
