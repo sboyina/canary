@@ -1,5 +1,22 @@
 body{
-	padding-top:60px;
+	padding-top:100px;
+}
+.nav>li>a.btn-github{
+	color: #FFF;
+	font-size: 12px;
+	height: 50px;
+	background: #008000 url('../images/GitHub-Mark-Light-32px.png') no-repeat 10px center;
+	padding-left: 50px;
+	box-shadow: 2px 1px 2px #AAA4A4;
+	border: 1px solid #387A38;
+	border-top-width: 0px;
+	border-radius: 0px;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+.nav>li>a.btn-github:hover{
+	color:#fff;
+	background-color: #006000;
 }
 .navbar-brand{
 	background-image: url('../images/pecker.png');
@@ -7,4 +24,10 @@ body{
 	background-size: 44px;
 	background-position: left center;
 	padding-left: 50px;
+}
+.container{
+	margin-bottom:30px
+}
+.navbar .container{
+	margin-bottom:0px;
 }
