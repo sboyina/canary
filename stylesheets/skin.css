@@ -1,5 +1,6 @@
 body{
 	padding-top:100px;
+	background-color: #CDE7E4;
 }
 .nav>li>a.btn-github{
 	color: #FFF;
@@ -7,7 +8,7 @@ body{
 	height: 50px;
 	background: #008000 url('../images/GitHub-Mark-Light-32px.png') no-repeat 10px center;
 	padding-left: 50px;
-	box-shadow: 2px 1px 2px #AAA4A4;
+	box-shadow: 2px 0px 2px #163D06;
 	border: 1px solid #387A38;
 	border-top-width: 0px;
 	border-radius: 0px;
@@ -30,4 +31,7 @@ body{
 }
 .navbar .container{
 	margin-bottom:0px;
+}
+.navbar {
+	background-color: #B3D173;
 }
