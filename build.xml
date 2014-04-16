@@ -44,5 +44,6 @@
 				<filename name="*.jar" />
 			</fileset>
 		</copy>
+		<zip basedir="${TARGET_DIR}/dist/${ant.project.name}-${VERSION}" destfile="${TARGET_DIR}/dist/${ant.project.name}-${VERSION}.zip"></zip>
 	</target>
 </project>
