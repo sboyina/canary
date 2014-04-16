@@ -1,3 +1,6 @@
+body{
+	padding-top:60px;
+}
 .navbar-brand{
 	background-image: url('../images/pecker.png');
 	background-repeat: no-repeat;
