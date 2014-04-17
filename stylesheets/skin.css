@@ -63,7 +63,7 @@ a.btn-github:hover{
 .navbar {
 	background-color: #B3D173;
 }
-.how-to-carousel{
+#how-to-carousel{
 	width: 800px;
 	background: #4E834B;
 	padding: 10px 30px;
@@ -71,13 +71,13 @@ a.btn-github:hover{
 	border: 1px solid #1F381E;
 	box-shadow: inset 5px 5px 10px #1F381E;
 }
-.how-to-carousel .carousel-inner{
+#how-to-carousel .carousel-inner{
 	min-height : 500px;
 }
-.how-to-carousel .carousel-inner img{
+#how-to-carousel .carousel-inner img{
 	margin: 0 auto;
 }
-.how-to-carousel .carousel-caption{
+#how-to-carousel .carousel-caption{
 	background-color:#F57A00;
 	border-radius: 5px;
 	width: 100%;
@@ -85,9 +85,9 @@ a.btn-github:hover{
 	margin: 0px;
 	left: 0px;
 }
-.how-to-carousel .carousel-inner>.item {
+#how-to-carousel .carousel-inner>.item {
 	
 }
-.how-to-carousel .carousel-control{
+#how-to-carousel .carousel-control{
 	background: transparent;
 }
