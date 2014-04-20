@@ -4,7 +4,6 @@
 package com.strategicbase.mp3;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.List;
 import java.util.jar.Pack200.Packer;
 import java.util.logging.Level;
@@ -33,62 +32,69 @@ public class MP3TagSweeper {
 	public MP3TagSweeper() {
 	}
 
-	public void updateAlbumTitle(String folderPath, boolean includeSubFolders,
-			ProgressListener progressListener) {
+	public void updateAlbumTitle(Input input, ProgressListener progressListener) {
 		try {
 			LOGGER.log(Level.INFO, "scanning for mp3 files ... ");
 			List<File> mp3Files = new MP3FileScanner().scan(
-					new File(folderPath), includeSubFolders);
+					new File(input.getLibraryFolderPath()),
+					input.isProcessSubFolders());
 			int total = mp3Files.size();
 			LOGGER.log(Level.INFO, total + " file(s) found.");
 			LOGGER.log(Level.INFO, "processing ");
 			int noOfProcessed = 0;
 			for (File file : mp3Files) {
-				updateAlbumTitleWithJAudio(file);
+				updateAlbumTitleWithJAudio(file, input);
 				noOfProcessed++;
 				progressListener.setProgress((noOfProcessed * 100) / total);
 			}
 			LOGGER.log(Level.INFO, "Successfully processed " + total
 					+ " file(s).");
 		} catch (Exception e) {
-			throw new RuntimeException(e);
+			LOGGER.log(Level.SEVERE,
+					"Failed to process request due to  " + e.getMessage());
 		}
 	}
 
-	private void updateAlbumTitleWithJAudio(File inputfile) throws Exception,
-			IOException {
-		LOGGER.log(Level.INFO, "    " + inputfile.getAbsolutePath());
-		String albumTitle = inputfile.getParentFile().getName().toLowerCase();
-		AudioFile audioFile = AudioFileIO.read(inputfile);
+	private void updateAlbumTitleWithJAudio(File inputfile, Input input) {
+		try {
+			LOGGER.log(Level.INFO, "    " + inputfile.getAbsolutePath());
+			if (!input.isThereAnythingToProcess()) {
+				return;
+			}
+			String albumTitle = inputfile.getParentFile().getName()
+					.toLowerCase();
+			AudioFile audioFile = AudioFileIO.read(inputfile);
+			Tag tag = getTag(audioFile);
+			setTag(input.isCopyFileNameAsSongTitle(), tag, FieldKey.TITLE,
+					inputfile.getName());
+			setTag(input.isCopyFolderNameAsAlbumTitle(), tag, FieldKey.ALBUM,
+					albumTitle);
+			setTag(input.isEraseAtrist(), tag, FieldKey.ARTIST, "");
+			setTag(input.isEraseAtrist(), tag, FieldKey.ALBUM_ARTIST, "");
+			audioFile.commit();
+		} catch (Exception e) {
+			LOGGER.log(Level.SEVERE,
+					" Not able to process " + inputfile.getAbsolutePath()
+							+ " due to:" + e.getMessage());
+		}
+	}
+
+	private Tag getTag(AudioFile audioFile) {
 		Tag tag = audioFile.getTag();
 		if (tag == null) {
 			tag = new ID3v24Tag();
 			audioFile.setTag(tag);
 		}
-		setTag(tag, FieldKey.TITLE, inputfile.getName());
-		setTag(tag, FieldKey.ALBUM, albumTitle);
-		setTag(tag, FieldKey.ARTIST, "");
-		setTag(tag, FieldKey.ALBUM_ARTIST, "");
-		audioFile.commit();
+		return tag;
 	}
 
-	private void setTag(Tag tag, FieldKey key, String value)
+	private void setTag(boolean doIt, Tag tag, FieldKey key, String value)
 			throws KeyNotFoundException, FieldDataInvalidException {
-		List<TagField> fieldList = tag.getFields(key);
-		if (fieldList != null && !fieldList.isEmpty()) {
-			tag.setField(key, value);
+		if (doIt) {
+			List<TagField> fieldList = tag.getFields(key);
+			if (fieldList != null && !fieldList.isEmpty()) {
+				tag.setField(key, value);
+			}
 		}
-	}
-
-	public static void main(String[] args) {
-		MP3TagSweeper pecker = new MP3TagSweeper();
-		pecker.updateAlbumTitle("L:\\test\\telugu", true,
-				new ProgressListener() {
-
-					@Override
-					public void setProgress(int progressPercentage) {
-						// TODO Auto-generated method stub
-					}
-				});
 	}
 }

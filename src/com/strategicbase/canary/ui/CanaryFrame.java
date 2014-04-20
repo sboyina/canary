@@ -6,6 +6,7 @@
 
 package com.strategicbase.canary.ui;
 
+import java.awt.event.ActionEvent;
 import java.io.File;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -14,6 +15,7 @@ import javax.swing.JFileChooser;
 import javax.swing.SwingWorker;
 
 import com.strategicbase.canary.ProgressListener;
+import com.strategicbase.mp3.Input;
 import com.strategicbase.mp3.MP3TagSweeper;
 
 /**
@@ -42,14 +44,18 @@ public class CanaryFrame extends javax.swing.JFrame {
 	private void initComponents() {
 
 		processSubfolderFlag = new javax.swing.JCheckBox();
-		progressBar = new javax.swing.JProgressBar();
 		startBtn = new javax.swing.JButton();
-		consolePane = new javax.swing.JScrollPane();
-		console = new javax.swing.JTextArea();
 		musicLibraryDirectoryLabel = new javax.swing.JLabel();
 		directoryPathTextField = new javax.swing.JTextField();
 		browseBtn = new javax.swing.JButton();
 		stopBtn = new javax.swing.JButton();
+		copyFolderNameAsAlbumTitle = new javax.swing.JCheckBox();
+		copyFileNameAsSongTitle = new javax.swing.JCheckBox();
+		eraseAlbumArtistTags = new javax.swing.JCheckBox();
+		processPanel = new javax.swing.JPanel();
+		consolePane = new javax.swing.JScrollPane();
+		console = new javax.swing.JTextArea();
+		progressBar = new javax.swing.JProgressBar();
 
 		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 		setTitle("canary");
@@ -74,15 +80,6 @@ public class CanaryFrame extends javax.swing.JFrame {
 				startBtnActionPerformed(evt);
 			}
 		});
-
-		consolePane
-				.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-
-		console.setBackground(new java.awt.Color(51, 51, 51));
-		console.setColumns(20);
-		console.setForeground(new java.awt.Color(255, 255, 255));
-		console.setRows(5);
-		consolePane.setViewportView(console);
 
 		musicLibraryDirectoryLabel.setFont(new java.awt.Font("Calibri", 1, 12));
 		musicLibraryDirectoryLabel.setText("Music Library Directory");
@@ -111,6 +108,66 @@ public class CanaryFrame extends javax.swing.JFrame {
 			}
 		});
 
+		copyFolderNameAsAlbumTitle.setFont(new java.awt.Font("Calibri", 0, 12));
+		copyFolderNameAsAlbumTitle.setSelected(true);
+		copyFolderNameAsAlbumTitle.setText("Copy Folder name as Album Title");
+		copyFolderNameAsAlbumTitle
+				.addActionListener(new java.awt.event.ActionListener() {
+					public void actionPerformed(java.awt.event.ActionEvent evt) {
+						copyFolderNameAsAlbumTitleActionPerformed(evt);
+					}
+				});
+
+		copyFileNameAsSongTitle.setFont(new java.awt.Font("Calibri", 0, 12));
+		copyFileNameAsSongTitle.setSelected(true);
+		copyFileNameAsSongTitle.setText("Copy File name as Song title");
+		copyFileNameAsSongTitle
+				.addActionListener(new java.awt.event.ActionListener() {
+					public void actionPerformed(java.awt.event.ActionEvent evt) {
+						copyFileNameAsSongTitleActionPerformed(evt);
+					}
+				});
+
+		eraseAlbumArtistTags.setFont(new java.awt.Font("Calibri", 0, 12));
+		eraseAlbumArtistTags.setSelected(true);
+		eraseAlbumArtistTags.setText("Erase album artist tags");
+
+		console.setBackground(new java.awt.Color(51, 51, 51));
+		console.setColumns(20);
+		console.setForeground(new java.awt.Color(255, 255, 255));
+		console.setRows(5);
+		consolePane.setViewportView(console);
+
+		javax.swing.GroupLayout processPanelLayout = new javax.swing.GroupLayout(
+				processPanel);
+		processPanel.setLayout(processPanelLayout);
+		processPanelLayout.setHorizontalGroup(processPanelLayout
+				.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+				.addComponent(consolePane,
+						javax.swing.GroupLayout.Alignment.TRAILING,
+						javax.swing.GroupLayout.DEFAULT_SIZE, 551,
+						Short.MAX_VALUE)
+				.addComponent(progressBar,
+						javax.swing.GroupLayout.DEFAULT_SIZE, 551,
+						Short.MAX_VALUE));
+		processPanelLayout.setVerticalGroup(processPanelLayout
+				.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+				.addGroup(
+						processPanelLayout
+								.createSequentialGroup()
+								.addComponent(progressBar,
+										javax.swing.GroupLayout.PREFERRED_SIZE,
+										20,
+										javax.swing.GroupLayout.PREFERRED_SIZE)
+								.addGap(20, 20, 20)
+								.addComponent(consolePane,
+										javax.swing.GroupLayout.PREFERRED_SIZE,
+										291,
+										javax.swing.GroupLayout.PREFERRED_SIZE)
+								.addContainerGap(
+										javax.swing.GroupLayout.DEFAULT_SIZE,
+										Short.MAX_VALUE)));
+
 		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(
 				getContentPane());
 		getContentPane().setLayout(layout);
@@ -122,10 +179,48 @@ public class CanaryFrame extends javax.swing.JFrame {
 								.addGroup(
 										layout.createParallelGroup(
 												javax.swing.GroupLayout.Alignment.LEADING)
-												.addComponent(
-														consolePane,
-														javax.swing.GroupLayout.DEFAULT_SIZE,
-														551, Short.MAX_VALUE)
+												.addGroup(
+														layout.createSequentialGroup()
+																.addGroup(
+																		layout.createParallelGroup(
+																				javax.swing.GroupLayout.Alignment.LEADING)
+																				.addGroup(
+																						layout.createSequentialGroup()
+																								.addGroup(
+																										layout.createParallelGroup(
+																												javax.swing.GroupLayout.Alignment.LEADING)
+																												.addComponent(
+																														processSubfolderFlag,
+																														javax.swing.GroupLayout.PREFERRED_SIZE,
+																														267,
+																														javax.swing.GroupLayout.PREFERRED_SIZE)
+																												.addComponent(
+																														copyFileNameAsSongTitle))
+																								.addPreferredGap(
+																										javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+																				.addGroup(
+																						javax.swing.GroupLayout.Alignment.TRAILING,
+																						layout.createSequentialGroup()
+																								.addComponent(
+																										startBtn,
+																										javax.swing.GroupLayout.PREFERRED_SIZE,
+																										85,
+																										javax.swing.GroupLayout.PREFERRED_SIZE)
+																								.addGap(15,
+																										15,
+																										15)))
+																.addGroup(
+																		layout.createParallelGroup(
+																				javax.swing.GroupLayout.Alignment.LEADING)
+																				.addComponent(
+																						eraseAlbumArtistTags)
+																				.addComponent(
+																						copyFolderNameAsAlbumTitle)
+																				.addComponent(
+																						stopBtn,
+																						javax.swing.GroupLayout.PREFERRED_SIZE,
+																						75,
+																						javax.swing.GroupLayout.PREFERRED_SIZE)))
 												.addGroup(
 														layout.createSequentialGroup()
 																.addComponent(
@@ -144,28 +239,11 @@ public class CanaryFrame extends javax.swing.JFrame {
 																.addComponent(
 																		browseBtn))
 												.addComponent(
-														processSubfolderFlag,
-														javax.swing.GroupLayout.PREFERRED_SIZE,
-														267,
-														javax.swing.GroupLayout.PREFERRED_SIZE)
-												.addGroup(
-														layout.createSequentialGroup()
-																.addComponent(
-																		startBtn,
-																		javax.swing.GroupLayout.PREFERRED_SIZE,
-																		85,
-																		javax.swing.GroupLayout.PREFERRED_SIZE)
-																.addPreferredGap(
-																		javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-																.addComponent(
-																		stopBtn,
-																		javax.swing.GroupLayout.PREFERRED_SIZE,
-																		85,
-																		javax.swing.GroupLayout.PREFERRED_SIZE))
-												.addComponent(
-														progressBar,
+														processPanel,
+														javax.swing.GroupLayout.Alignment.TRAILING,
 														javax.swing.GroupLayout.DEFAULT_SIZE,
-														551, Short.MAX_VALUE))
+														javax.swing.GroupLayout.DEFAULT_SIZE,
+														Short.MAX_VALUE))
 								.addContainerGap()));
 		layout.setVerticalGroup(layout
 				.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -192,47 +270,60 @@ public class CanaryFrame extends javax.swing.JFrame {
 																						javax.swing.GroupLayout.PREFERRED_SIZE))
 																.addGap(14, 14,
 																		14)
-																.addComponent(
-																		processSubfolderFlag)
-																.addPreferredGap(
-																		javax.swing.LayoutStyle.ComponentPlacement.RELATED)
 																.addGroup(
 																		layout.createParallelGroup(
 																				javax.swing.GroupLayout.Alignment.BASELINE)
 																				.addComponent(
-																						startBtn,
-																						javax.swing.GroupLayout.PREFERRED_SIZE,
-																						32,
-																						javax.swing.GroupLayout.PREFERRED_SIZE)
+																						processSubfolderFlag)
 																				.addComponent(
-																						stopBtn,
-																						javax.swing.GroupLayout.DEFAULT_SIZE,
-																						31,
-																						Short.MAX_VALUE))
-																.addGap(18, 18,
-																		18))
-												.addGroup(
-														layout.createSequentialGroup()
-																.addComponent(
-																		browseBtn,
-																		javax.swing.GroupLayout.PREFERRED_SIZE,
-																		25,
-																		javax.swing.GroupLayout.PREFERRED_SIZE)
-																.addPreferredGap(
-																		javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-								.addComponent(progressBar,
-										javax.swing.GroupLayout.PREFERRED_SIZE,
-										20,
-										javax.swing.GroupLayout.PREFERRED_SIZE)
+																						copyFolderNameAsAlbumTitle)))
+												.addComponent(
+														browseBtn,
+														javax.swing.GroupLayout.PREFERRED_SIZE,
+														25,
+														javax.swing.GroupLayout.PREFERRED_SIZE))
 								.addPreferredGap(
 										javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-								.addComponent(consolePane,
+								.addGroup(
+										layout.createParallelGroup(
+												javax.swing.GroupLayout.Alignment.LEADING)
+												.addComponent(
+														copyFileNameAsSongTitle)
+												.addComponent(
+														eraseAlbumArtistTags))
+								.addGap(18, 18, 18)
+								.addGroup(
+										layout.createParallelGroup(
+												javax.swing.GroupLayout.Alignment.BASELINE)
+												.addComponent(
+														startBtn,
+														javax.swing.GroupLayout.PREFERRED_SIZE,
+														32,
+														javax.swing.GroupLayout.PREFERRED_SIZE)
+												.addComponent(
+														stopBtn,
+														javax.swing.GroupLayout.DEFAULT_SIZE,
+														34, Short.MAX_VALUE))
+								.addPreferredGap(
+										javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+								.addComponent(processPanel,
+										javax.swing.GroupLayout.PREFERRED_SIZE,
 										javax.swing.GroupLayout.DEFAULT_SIZE,
-										274, Short.MAX_VALUE).addContainerGap()));
+										javax.swing.GroupLayout.PREFERRED_SIZE)));
 
 		pack();
 	}// </editor-fold>
 	//GEN-END:initComponents
+
+	private void copyFileNameAsSongTitleActionPerformed(ActionEvent evt) {
+		// TODO Auto-generated method stub
+
+	}
+
+	private void copyFolderNameAsAlbumTitleActionPerformed(ActionEvent evt) {
+		// TODO Auto-generated method stub
+
+	}
 
 	private void stopBtnActionPerformed(java.awt.event.ActionEvent evt) {
 		if (this.task != null) {
@@ -284,8 +375,12 @@ public class CanaryFrame extends javax.swing.JFrame {
 	private javax.swing.JButton browseBtn;
 	private javax.swing.JTextArea console;
 	private javax.swing.JScrollPane consolePane;
+	private javax.swing.JCheckBox copyFileNameAsSongTitle;
+	private javax.swing.JCheckBox copyFolderNameAsAlbumTitle;
 	private javax.swing.JTextField directoryPathTextField;
+	private javax.swing.JCheckBox eraseAlbumArtistTags;
 	private javax.swing.JLabel musicLibraryDirectoryLabel;
+	private javax.swing.JPanel processPanel;
 	private javax.swing.JCheckBox processSubfolderFlag;
 	private javax.swing.JProgressBar progressBar;
 	private javax.swing.JButton startBtn;
@@ -306,16 +401,23 @@ public class CanaryFrame extends javax.swing.JFrame {
 		protected Void doInBackground() throws Exception {
 			MP3TagSweeper canary = new MP3TagSweeper();
 			boolean includeSubFolders = processSubfolderFlag.isSelected();
-			canary.updateAlbumTitle(rootDir.getAbsolutePath(),
-					includeSubFolders, new ProgressListener() {
-						@Override
-						public void setProgress(int progressPercentage) {
-							progressBar.setValue(progressPercentage);
-							if (progressPercentage > 99) {
-								startBtn.setEnabled(true);
-							}
-						}
-					});
+			Input input = new Input(rootDir.getAbsolutePath());
+			input.setProcessSubFolders(includeSubFolders);
+			input.setCopyFileNameAsSongTitle(copyFileNameAsSongTitle
+					.isSelected());
+			input.setCopyFolderNameAsAlbumTitle(copyFolderNameAsAlbumTitle
+					.isSelected());
+			input.setEraseAtrist(eraseAlbumArtistTags.isSelected());
+			canary.updateAlbumTitle(input, new ProgressListener() {
+				@Override
+				public void setProgress(int progressPercentage) {
+					progressBar.setValue(progressPercentage);
+					if (progressPercentage > 99) {
+						startBtn.setEnabled(true);
+						stopBtn.setEnabled(false);
+					}
+				}
+			});
 			return null;
 		}
 	}
