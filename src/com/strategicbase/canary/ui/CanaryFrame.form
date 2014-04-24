@@ -174,7 +174,7 @@
           <Font name="Calibri" size="12" style="0"/>
         </Property>
         <Property name="selected" type="boolean" value="true"/>
-        <Property name="text" type="java.lang.String" value="Copy Folder name as Album Title"/>
+        <Property name="text" type="java.lang.String" value="Copy folder name as album title"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="copyFolderNameAsAlbumTitleActionPerformed"/>
@@ -186,7 +186,7 @@
           <Font name="Calibri" size="12" style="0"/>
         </Property>
         <Property name="selected" type="boolean" value="true"/>
-        <Property name="text" type="java.lang.String" value="Copy File name as Song title"/>
+        <Property name="text" type="java.lang.String" value="Copy file name as song title"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="copyFileNameAsSongTitleActionPerformed"/>
@@ -197,7 +197,6 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Calibri" size="12" style="0"/>
         </Property>
-        <Property name="selected" type="boolean" value="true"/>
         <Property name="text" type="java.lang.String" value="Erase album artist tags"/>
       </Properties>
     </Component>

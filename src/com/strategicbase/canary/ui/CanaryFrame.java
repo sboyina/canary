@@ -110,7 +110,7 @@ public class CanaryFrame extends javax.swing.JFrame {
 
 		copyFolderNameAsAlbumTitle.setFont(new java.awt.Font("Calibri", 0, 12));
 		copyFolderNameAsAlbumTitle.setSelected(true);
-		copyFolderNameAsAlbumTitle.setText("Copy Folder name as Album Title");
+		copyFolderNameAsAlbumTitle.setText("Copy folder name as album title");
 		copyFolderNameAsAlbumTitle
 				.addActionListener(new java.awt.event.ActionListener() {
 					public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -120,7 +120,7 @@ public class CanaryFrame extends javax.swing.JFrame {
 
 		copyFileNameAsSongTitle.setFont(new java.awt.Font("Calibri", 0, 12));
 		copyFileNameAsSongTitle.setSelected(true);
-		copyFileNameAsSongTitle.setText("Copy File name as Song title");
+		copyFileNameAsSongTitle.setText("Copy file name as song title");
 		copyFileNameAsSongTitle
 				.addActionListener(new java.awt.event.ActionListener() {
 					public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -129,7 +129,6 @@ public class CanaryFrame extends javax.swing.JFrame {
 				});
 
 		eraseAlbumArtistTags.setFont(new java.awt.Font("Calibri", 0, 12));
-		eraseAlbumArtistTags.setSelected(true);
 		eraseAlbumArtistTags.setText("Erase album artist tags");
 
 		console.setBackground(new java.awt.Color(51, 51, 51));
