@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <launch4jConfig>
-  <dontWrapJar>false</dontWrapJar>
+  <dontWrapJar>true</dontWrapJar>
   <headerType>gui</headerType>
-  <jar>C:\Users\srinivasab\strategic-base\code_base\canary\target\dist\canary-1.0.0\canary-1.0.0.jar</jar>
+  <jar>canary-1.0.0.jar</jar>
   <outfile>C:\Users\srinivasab\strategic-base\code_base\canary\target\dist\canary-1.0.0\canary-1.0.0.exe</outfile>
   <errTitle></errTitle>
   <cmdLine></cmdLine>

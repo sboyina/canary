@@ -35,7 +35,7 @@
 			</manifest>
 		</jar>
 	</target>
-	<target name="release" depends="jar">
+	<target name="release">
 		<copy todir="${TARGET_DIR}/dist/${ant.project.name}-${VERSION}">
 			<fileset dir="${TARGET_DIR}/dist">
 				<filename name="*.jar" />
